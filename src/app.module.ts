@@ -19,14 +19,21 @@ import { User } from './user/user.entity';
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
       type: 'postgres',
       url: configService.get('DATABASE_URL'), 
       autoLoadEntities: true,
       entities: [User, Reservation],
       synchronize: true,
+      ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      },
       }),
+      inject: [ConfigService],
+
     }),
     HttpModule,
     JwtModule.registerAsync({
