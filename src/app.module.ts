@@ -28,9 +28,6 @@ import { User } from './user/user.entity';
       synchronize: true,
       }),
     }),
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
     HttpModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
