@@ -35,7 +35,7 @@ import {
   
       if (conflict) {
         throw new BadRequestException(
-          'Tu as déjà une réservation dans cette plage horaire. Il faut espacer de 2h minimum.',
+          'Tu as déjà une réservation dans cette plage horaire. Il faut espacer de au moins 2h',
         );
       }
   
@@ -72,10 +72,9 @@ import {
       });
   
       if (conflict) {
-        throw new ConflictException('Conflit de réservation : 2h d’intervalle requis.');
+        throw new ConflictException('Conflit de réservation : 2h dintervalle requis.');
       }
   
-      // Récupérer le titre du film depuis TMDb
       let movieTitle = '';
       try {
         const apiKey = this.configService.get('TMDB_API_KEY');

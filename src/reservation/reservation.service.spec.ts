@@ -30,7 +30,7 @@ describe('ReservationService', () => {
         ReservationService,
         { provide: getRepositoryToken(Reservation), useValue: reservationRepo },
         { provide: HttpService, useValue: httpService },
-        { provide: ConfigService, useValue: { get: jest.fn().mockReturnValue('http://fake-url') } },],
+        { provide: ConfigService, useValue: { get: jest.fn().mockReturnValue('http://urlcaca') } },],
     }).compile();
 
     service = module.get<ReservationService>(ReservationService);
@@ -48,7 +48,7 @@ describe('ReservationService', () => {
 
     jest.spyOn(httpService, 'get').mockReturnValue(
       of({
-        data: { title: 'Fake Movie Title' },
+        data: { title: 'doctor who house' },
         status: 200,
         statusText: 'OK',
         headers: {},
@@ -57,7 +57,7 @@ describe('ReservationService', () => {
     );
 
     const result = await service.createReservation(user.id, dto);
-    expect(result.movieTitle).toBe('Fake Movie Title');
+    expect(result.movieTitle).toBe('doctor who house');
     expect(reservationRepo.save).toHaveBeenCalled();
   });
 
@@ -68,7 +68,7 @@ describe('ReservationService', () => {
       startTime: '2025-04-10T14:00:00',
     };
 
-    reservationRepo.find.mockResolvedValue([{ id: 1 }]); // Chevauchement simulé
+    reservationRepo.find.mockResolvedValue([{ id: 1 }]); 
 
     await expect(service.createReservation(user.id, dto)).rejects.toThrow(BadRequestException);
   });

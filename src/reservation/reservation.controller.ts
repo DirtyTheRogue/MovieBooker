@@ -1,14 +1,4 @@
-import {
-    Controller,
-    Post,
-    Body,
-    Get,
-    UseGuards,
-    Delete,
-    Param,
-    Request,
-    ParseIntPipe,
-  } from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards, Delete,Param, Request, ParseIntPipe, } from '@nestjs/common';
   import { ApiBearerAuth, ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
   import { JwtAuthGuard } from '../auth/jwt-auth.guard';
   import { ReservationService } from './reservation.service';
@@ -29,7 +19,7 @@ import {
     }
   
     @Get()
-    @ApiOperation({ summary: 'Lister les réservations de l’utilisateur connecté' })
+    @ApiOperation({ summary: 'Lister les réservations de lutilisateur connecté' })
     findAll(@Request() req) {
       return this.reservationService.findAll(req.user);
     }
