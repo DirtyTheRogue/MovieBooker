@@ -2,7 +2,7 @@ import { IsNotEmpty, IsEmail } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class RegisterDto {
-  @ApiProperty({ description: 'Adresse email', example: "test@mail.com", name : "email" })
+  @ApiProperty({ description: 'Adresse email' })
   @IsEmail({}, { message: 'Le champ doit être une adresse email' })
   @IsNotEmpty()
   username: string;
